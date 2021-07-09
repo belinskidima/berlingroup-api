@@ -1,0 +1,3212 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Berlingroup API",
+    "version": "1.0",
+    "description": "Berlingroup api",
+    "contact": {
+      "name": "Belinschi",
+      "email": "belinski.d@gmail.com"
+    },
+    "termsOfService": "https://priora.saltedge.com/pages/min_terms_of_service_end_user"
+  },
+  "servers": [
+    {
+      "url": "https://priora.saltedge.com"
+    }
+  ],
+  "paths": {
+    "/{provider_code}/api/berlingroup/v1/accounts": {
+      "parameters": [
+        {
+          "name": "provider_code",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "The provider code"
+        }
+      ],
+      "get": {
+        "summary": "Index",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "accounts": [
+                        {
+                          "resourceId": "3dc3d5b3-7023-4848-9853-f5400a64e80f",
+                          "currency": "USD",
+                          "name": "US Dollar Account",
+                          "product": "Fremdwährungskonto",
+                          "cashAccountType": "SACc",
+                          "status": "blocked",
+                          "balances": [
+                            {
+                              "type": "closingBooked",
+                              "amount": "34.45",
+                              "currency": "USD",
+                              "reference_date": "2019-08-21",
+                              "lastChangeDateTime": "2019-08-21",
+                              "lastCommittedTransaction": "2019-08-21"
+                            }
+                          ],
+                          "iban": "DE2310010010123456789",
+                          "bban": "5390 0754 7034",
+                          "bic": "BARCGB22XXX",
+                          "sortCode": "56-83-17",
+                          "msisdn": "447912345678",
+                          "_links": {
+                            "transactions": {
+                              "href": "/demobank/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions"
+                            },
+                            "balances": {
+                              "href": "/demobank/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/balances"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "properties": {
+                    "accounts": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 0,
+                      "description": "Wrapper for accounts.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "resourceId": {
+                            "type": "string",
+                            "minLength": 1,
+                            "description": "This is the data element to be used in the path when retrieving data from a dedicated account."
+                          },
+                          "cashAccountType": {
+                            "type": "string",
+                            "minLength": 1,
+                            "description": "ExternalCashAccountType1Code from ISO 20022.",
+                            "enum": [
+                              "CACC",
+                              "CASH",
+                              "CISH",
+                              "COMM",
+                              "CPAC",
+                              "LLSV",
+                              "LOAN",
+                              "MGLD",
+                              "MOMA",
+                              "NREX",
+                              "ODFT",
+                              "ONDP",
+                              "OTHR",
+                              "SACC",
+                              "SLRY",
+                              "SVGS",
+                              "TAXE",
+                              "TRAN",
+                              "TRAS"
+                            ]
+                          },
+                          "currency": {
+                            "type": "string",
+                            "minLength": 1,
+                            "description": "Account currency code from ISO 4217."
+                          },
+                          "status": {
+                            "type": "string",
+                            "minLength": 1,
+                            "description": "Account status.",
+                            "enum": [
+                              "enabled",
+                              "deleted",
+                              "blocked"
+                            ]
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "description": "Name of the account given by the bank or the PSU in Online-Banking."
+                          },
+                          "product": {
+                            "type": "string",
+                            "minLength": 1,
+                            "description": "Product Name of the Bank for this account, proprietary definition."
+                          },
+                          "iban": {
+                            "type": "string",
+                            "minLength": 1,
+                            "description": "International Bank Account Number."
+                          },
+                          "bban": {
+                            "type": "string",
+                            "description": "Basic Bank Account Number."
+                          },
+                          "bic": {
+                            "type": "string",
+                            "minLength": 1,
+                            "description": "Bank Identifier Code."
+                          },
+                          "sortCode": {
+                            "type": "string",
+                            "minLength": 1,
+                            "description": "Bank codes used in British and Irish banking systems."
+                          },
+                          "msisdn": {
+                            "type": "string",
+                            "minLength": 1,
+                            "description": "A number uniquely identifying a subscription in a Global System for Mobile communications or a Universal Mobile Telecommunications System mobile network."
+                          },
+                          "balances": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "minItems": 1,
+                            "description": "Wrapper for balances.",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "amount": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "currency": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "reference_date": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "lastChangeDateTime": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "lastCommittedTransaction": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "amount",
+                                "currency",
+                                "reference_date",
+                                "lastChangeDateTime",
+                                "lastCommittedTransaction"
+                              ]
+                            }
+                          },
+                          "_links": {
+                            "type": "object",
+                            "description": "A list of hyperlinks to be recognized by the TPP.",
+                            "properties": {
+                              "transactions": {
+                                "type": "object",
+                                "required": [
+                                  "href"
+                                ],
+                                "properties": {
+                                  "href": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                }
+                              },
+                              "balances": {
+                                "type": "object",
+                                "required": [
+                                  "href"
+                                ],
+                                "properties": {
+                                  "href": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                }
+                              }
+                            },
+                            "required": [
+                              "transactions",
+                              "balances"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "resourceId",
+                          "cashAccountType",
+                          "currency",
+                          "name",
+                          "product",
+                          "bban",
+                          "sortCode"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "accounts"
+                  ]
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "accounts": [
+                        {
+                          "resourceId": "3dc3d5b3-7023-4848-9853-f5400a64e80f",
+                          "currency": "USD",
+                          "name": "US Dollar Account",
+                          "product": "Fremdwährungskonto",
+                          "cashAccountType": "CACC",
+                          "status": "blocked",
+                          "balances": [
+                            {
+                              "type": "closingBooked",
+                              "amount": "34.45",
+                              "currency": "USD",
+                              "reference_date": "2019-08-21",
+                              "lastChangeDateTime": "2019-08-21",
+                              "lastCommittedTransaction": "2019-08-21"
+                            }
+                          ],
+                          "iban": "DE2310010010123456789",
+                          "bban": "5390 0754 7034",
+                          "bic": "BARCGB22XXX",
+                          "sortCode": "56-83-17",
+                          "msisdn": "447912345678",
+                          "_links": {
+                            "transactions": {
+                              "href": "/demobank/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions"
+                            },
+                            "balances": {
+                              "href": "/demobank/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/balances"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        },
+        "operationId": "get-accounts",
+        "description": "Retrieve the information of the accounts",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "x-examples": {
+                  "example-1": {
+                    "withBalance": true
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "x-examples": {
+                  "example-1": {
+                    "withBalance": true
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {}
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            },
+            "text/html": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {}
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          },
+          "description": ""
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-Request-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Digest"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-Corporate-ID"
+          },
+          {
+            "$ref": "#/components/parameters/TPP-Signature-Certificate"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          },
+          {
+            "$ref": "#/components/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/components/parameters/Consent-Id"
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "withBalance",
+            "description": "If contained, this function reads the list of accessible payment accounts including the booking balance, if granted by the PSU in the related consent and available by the ASPSP. This parameter might be ignored by the ASPSP."
+          }
+        ],
+        "security": [],
+        "tags": [
+          "Accounts"
+        ]
+      }
+    },
+    "/{provider_code}/api/berlingroup/v1/accounts/{account_id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/provider_code"
+        },
+        {
+          "$ref": "#/components/parameters/account_id"
+        }
+      ],
+      "get": {
+        "summary": "Show",
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "account": {
+                      "type": "object",
+                      "properties": {
+                        "cashAccountType": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "status": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "currency": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "iban": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "bban": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "name": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "product": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "_links": {
+                          "type": "object",
+                          "properties": {
+                            "balances": {
+                              "type": "object",
+                              "properties": {
+                                "href": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "href"
+                              ]
+                            },
+                            "transactions": {
+                              "type": "object",
+                              "properties": {
+                                "href": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "href"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "balances",
+                            "transactions"
+                          ]
+                        },
+                        "sortCode": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "resourceId": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "cashAccountType",
+                        "status",
+                        "currency",
+                        "iban",
+                        "bban",
+                        "name",
+                        "product",
+                        "_links",
+                        "sortCode",
+                        "resourceId"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "account"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "account": {
+                        "cashAccountType": "CACC",
+                        "status": "enabled",
+                        "currency": "USD",
+                        "iban": "DE2310010010123456789",
+                        "bban": "BARC12345612345678",
+                        "name": "Main Account",
+                        "product": "Girokonto",
+                        "_links": {
+                          "balances": {
+                            "href": "/demobank/api/berlingroup/v1/accounts/554/balances"
+                          },
+                          "transactions": {
+                            "href": "/demobank/api/berlingroup/v1/accounts/554/transactions"
+                          }
+                        },
+                        "sortCode": "56-83-17",
+                        "resourceId": "554"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "account": {
+                        "cashAccountType": "CACC",
+                        "status": "enabled",
+                        "currency": "USD",
+                        "iban": "DE2310010010123456789",
+                        "bban": "BARC12345612345678",
+                        "name": "Main Account",
+                        "product": "Girokonto",
+                        "sortCode": "56-83-17",
+                        "resourceId": "554",
+                        "_links": {
+                          "balances": {
+                            "href": "/demobank/api/berlingroup/v1/accounts/554/balances"
+                          },
+                          "transactions": {
+                            "href": "/demobank/api/berlingroup/v1/accounts/554/transactions"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/ResourceUnknown"
+          }
+        },
+        "operationId": "get-account",
+        "description": "Reads details about an account, with balances where required. It is assumed that a consent of the PSU to this access is already given and stored on the ASPSP system. The addressed details of this account depends on the stored consent addressed by consentId, respectively the OAuth2 access token.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-Request-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Digest"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-Corporate-ID"
+          },
+          {
+            "$ref": "#/components/parameters/TPP-Signature-Certificate"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          },
+          {
+            "$ref": "#/components/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/components/parameters/Consent-Id"
+          }
+        ],
+        "security": []
+      }
+    },
+    "/{provider_code}/api/berlingroup/v1/accounts/{account_id}/transactions": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/provider_code"
+        },
+        {
+          "$ref": "#/components/parameters/account_id"
+        }
+      ],
+      "get": {
+        "summary": "Transactions",
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "account": {
+                        "bban": "5390 0754 7034",
+                        "msisdn": "41793834315",
+                        "bic": "BARCGB22XXX",
+                        "iban": "DE2310010010123456789",
+                        "currency": "USD"
+                      },
+                      "transactions": {
+                        "booked": [
+                          {
+                            "transactionId": "1",
+                            "creditorName": "Paul Simpson",
+                            "creditorAccount": {
+                              "iban": "NL76RABO0359400371"
+                            },
+                            "transactionAmount": {
+                              "currency": "USD",
+                              "amount": "75.8"
+                            },
+                            "bookingDate": "2019-03-07",
+                            "valueDate": "2019-03-06",
+                            "remittanceInformationUnstructured": "remittance_information_unstructured"
+                          }
+                        ],
+                        "_links": {
+                          "account": {
+                            "href": "/demobank/api/berlingroup/v1/accounts/223"
+                          }
+                        },
+                        "pending": [
+                          {
+                            "transactionId": "2",
+                            "creditorName": "Paul Simpson",
+                            "creditorAccount": {
+                              "iban": "NL76RABO0359400371"
+                            },
+                            "transactionAmount": {
+                              "currency": "USD",
+                              "amount": "25.9"
+                            },
+                            "valueDate": "2019-03-06",
+                            "remittanceInformationUnstructured": "remittance_information_unstructured"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "properties": {
+                    "account": {
+                      "type": "object",
+                      "required": [
+                        "bban",
+                        "msisdn",
+                        "bic",
+                        "iban",
+                        "currency"
+                      ],
+                      "properties": {
+                        "bban": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "msisdn": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "bic": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "iban": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "currency": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "transactions": {
+                      "type": "object",
+                      "required": [
+                        "booked",
+                        "pending",
+                        "_links"
+                      ],
+                      "properties": {
+                        "booked": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "minItems": 1,
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "transactionId": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "creditorName": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "creditorAccount": {
+                                "type": "object",
+                                "properties": {
+                                  "iban": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "iban"
+                                ]
+                              },
+                              "transactionAmount": {
+                                "type": "object",
+                                "properties": {
+                                  "currency": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "amount": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "currency",
+                                  "amount"
+                                ]
+                              },
+                              "bookingDate": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "valueDate": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "remittanceInformationUnstructured": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "transactionId",
+                              "creditorName",
+                              "bookingDate",
+                              "valueDate",
+                              "remittanceInformationUnstructured"
+                            ]
+                          }
+                        },
+                        "pending": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "minItems": 1,
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "transactionId": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "creditorName": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "creditorAccount": {
+                                "type": "object",
+                                "properties": {
+                                  "iban": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "iban"
+                                ]
+                              },
+                              "transactionAmount": {
+                                "type": "object",
+                                "properties": {
+                                  "currency": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "amount": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "currency",
+                                  "amount"
+                                ]
+                              },
+                              "valueDate": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "remittanceInformationUnstructured": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "transactionId",
+                              "creditorName",
+                              "valueDate",
+                              "remittanceInformationUnstructured"
+                            ]
+                          }
+                        },
+                        "_links": {
+                          "type": "object",
+                          "required": [
+                            "account"
+                          ],
+                          "properties": {
+                            "account": {
+                              "type": "object",
+                              "required": [
+                                "href"
+                              ],
+                              "properties": {
+                                "href": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "account",
+                    "transactions"
+                  ]
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "account": {
+                        "bban": "5390 0754 7034",
+                        "msisdn": "41793834315",
+                        "bic": "BARCGB22XXX",
+                        "iban": "DE2310010010123456789",
+                        "currency": "USD"
+                      },
+                      "transactions": {
+                        "booked": [
+                          {
+                            "transactionId": "1",
+                            "creditorName": "Paul Simpson",
+                            "creditorAccount": {
+                              "iban": "NL76RABO0359400371"
+                            },
+                            "transactionAmount": {
+                              "currency": "USD",
+                              "amount": "75.8"
+                            },
+                            "bookingDate": "2019-03-07",
+                            "valueDate": "2019-03-06",
+                            "remittanceInformationUnstructured": "remittance_information_unstructured"
+                          }
+                        ],
+                        "_links": {
+                          "account": {
+                            "href": "/demobank/api/berlingroup/v1/accounts/223"
+                          }
+                        },
+                        "pending": [
+                          {
+                            "transactionId": "2",
+                            "creditorName": "Paul Simpson",
+                            "creditorAccount": {
+                              "iban": "NL76RABO0359400371"
+                            },
+                            "transactionAmount": {
+                              "currency": "USD",
+                              "amount": "25.9"
+                            },
+                            "valueDate": "2019-03-06",
+                            "remittanceInformationUnstructured": "remittance_information_unstructured"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/ResourceUnknown"
+          }
+        },
+        "operationId": "get-transactions",
+        "description": "Read transaction reports or transaction lists of a given account addressed by account_id, depending on the steering parameter bookingStatus together with balances.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-Request-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Digest"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-Corporate-ID"
+          },
+          {
+            "$ref": "#/components/parameters/TPP-Signature-Certificate"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          },
+          {
+            "$ref": "#/components/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/components/parameters/Consent-Id"
+          },
+          {
+            "$ref": "#/components/parameters/dateFrom"
+          },
+          {
+            "$ref": "#/components/parameters/dateTo"
+          },
+          {
+            "$ref": "#/components/parameters/bookingStatus"
+          }
+        ],
+        "security": []
+      }
+    },
+    "/{provider_code}/api/berlingroup/v1/accounts/{account_id}/balances": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/provider_code"
+        },
+        {
+          "$ref": "#/components/parameters/account_id"
+        }
+      ],
+      "get": {
+        "summary": "Balances",
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "account": {
+                      "type": "object",
+                      "properties": {
+                        "currency": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "bban": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "msisdn": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "bic": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "iban": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "currency",
+                        "bban",
+                        "msisdn",
+                        "bic",
+                        "iban"
+                      ]
+                    },
+                    "balances": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "type",
+                          "amount",
+                          "currency",
+                          "referenceDate",
+                          "lastChangeDateTime",
+                          "lastCommittedTransaction"
+                        ],
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "amount": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "currency": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "referenceDate": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "lastChangeDateTime": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "lastCommittedTransaction": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "account",
+                    "balances"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "account": {
+                        "currency": "USD",
+                        "bban": "BARC12345612345678",
+                        "msisdn": "AAAADEBBXXX",
+                        "bic": "+49 170 1234567",
+                        "iban": "DE2310010010123456789"
+                      },
+                      "balances": [
+                        {
+                          "type": "closingBooked",
+                          "amount": "10.15",
+                          "currency": "USD",
+                          "referenceDate": "2019-08-21",
+                          "lastChangeDateTime": "2017-10-25T15:30:35.035Z",
+                          "lastCommittedTransaction": "2019-08-21"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "account": {
+                        "currency": "USD",
+                        "bban": "BARC12345612345678",
+                        "msisdn": "AAAADEBBXXX",
+                        "bic": "+49 170 1234567",
+                        "iban": "DE2310010010123456789"
+                      },
+                      "balances": [
+                        {
+                          "type": "closingBooked",
+                          "amount": "10.15",
+                          "currency": "USD",
+                          "referenceDate": "2019-08-21",
+                          "lastChangeDateTime": "2017-10-25T15:30:35.035Z",
+                          "lastCommittedTransaction": "2019-08-21"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-balances",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-Request-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Digest"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-Corporate-ID"
+          },
+          {
+            "$ref": "#/components/parameters/TPP-Signature-Certificate"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          },
+          {
+            "$ref": "#/components/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/components/parameters/Consent-Id"
+          }
+        ],
+        "description": "Reads account data from a given account addressed by account_id",
+        "security": []
+      }
+    },
+    "/{provider_code}/api/berlingroup/v1/card-accounts": {
+      "parameters": [
+        {
+          "name": "provider_code",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "The provider code"
+        }
+      ],
+      "get": {
+        "summary": "Index",
+        "tags": [
+          "Card Accounts"
+        ],
+        "operationId": "get-card-accounts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-Request-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Digest"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-Corporate-ID"
+          },
+          {
+            "$ref": "#/components/parameters/TPP-Signature-Certificate"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          },
+          {
+            "$ref": "#/components/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/components/parameters/Consent-Id"
+          },
+          {
+            "$ref": "#/components/parameters/dateFrom"
+          },
+          {
+            "$ref": "#/components/parameters/dateTo"
+          },
+          {
+            "$ref": "#/components/parameters/bookingStatus"
+          }
+        ],
+        "description": "Reads a list of card accounts with additional information, e.g. balance information. It is assumed that a consent of the PSU to this access is already given and stored on Salt Edge Compliance system. The addressed list of card accounts depends on the PSU ID and the stored consent addressed by consentId.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "cardAccounts": [
+                        {
+                          "resourceId": "3d9a81b3-a47d-4130-8765-a9c0ff861b99",
+                          "maskedPan": "525412******3241",
+                          "currency": "EUR",
+                          "name": "Main",
+                          "product": "Basic Credit",
+                          "status": "blocked",
+                          "creditLimit": {
+                            "currency": "EUR",
+                            "amount": "15000"
+                          },
+                          "balances": [
+                            {
+                              "balanceType": "interimBooked",
+                              "balanceAmount": {
+                                "currency": "EUR",
+                                "amount": "14355.78"
+                              }
+                            },
+                            {
+                              "balanceType": "nonInvoiced",
+                              "balanceAmount": {
+                                "currency": "EUR",
+                                "amount": "4175.86"
+                              }
+                            }
+                          ],
+                          "_links": {
+                            "transactions": {
+                              "href": "/demobank/api/berlingroup/v1/card-accounts/3d9a81b3-a47d-4130-8765-a9c0ff861b99/transactions"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "properties": {
+                    "cardAccounts": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "resourceId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "maskedPan": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "currency": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "product": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "status": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "creditLimit": {
+                            "type": "object",
+                            "properties": {
+                              "currency": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "amount": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          },
+                          "balances": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "minItems": 1,
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "balanceType": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "balanceAmount": {
+                                  "type": "object",
+                                  "required": [
+                                    "currency",
+                                    "amount"
+                                  ],
+                                  "properties": {
+                                    "currency": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "amount": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    }
+                                  }
+                                }
+                              },
+                              "required": [
+                                "balanceType",
+                                "balanceAmount"
+                              ]
+                            }
+                          },
+                          "_links": {
+                            "type": "object",
+                            "properties": {
+                              "transactions": {
+                                "type": "object",
+                                "required": [
+                                  "href"
+                                ],
+                                "properties": {
+                                  "href": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "resourceId",
+                          "maskedPan",
+                          "currency",
+                          "name",
+                          "product",
+                          "status",
+                          "creditLimit",
+                          "_links"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "cardAccounts"
+                  ]
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "cardAccounts": [
+                        {
+                          "resourceId": "3d9a81b3-a47d-4130-8765-a9c0ff861b99",
+                          "maskedPan": "525412******3241",
+                          "currency": "EUR",
+                          "name": "Main",
+                          "product": "Basic Credit",
+                          "status": "blocked",
+                          "creditLimit": {
+                            "currency": "EUR",
+                            "amount": "15000"
+                          },
+                          "balances": [
+                            {
+                              "balanceType": "interimBooked",
+                              "balanceAmount": {
+                                "currency": "EUR",
+                                "amount": "14355.78"
+                              }
+                            },
+                            {
+                              "balanceType": "nonInvoiced",
+                              "balanceAmount": {
+                                "currency": "EUR",
+                                "amount": "4175.86"
+                              }
+                            }
+                          ],
+                          "_links": {
+                            "transactions": {
+                              "href": "/demobank/api/berlingroup/v1/card-accounts/3d9a81b3-a47d-4130-8765-a9c0ff861b99/transactions"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        },
+        "security": []
+      }
+    },
+    "/{provider_code}/api/berlingroup/v1/card-accounts/{account_id}": {
+      "parameters": [
+        {
+          "name": "provider_code",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "The provider code"
+        },
+        {
+          "$ref": "#/components/parameters/account_id"
+        }
+      ],
+      "get": {
+        "summary": "Show",
+        "tags": [
+          "Card Accounts"
+        ],
+        "operationId": "get-card-account",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-Request-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Digest"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-Corporate-ID"
+          },
+          {
+            "$ref": "#/components/parameters/TPP-Signature-Certificate"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          },
+          {
+            "$ref": "#/components/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/components/parameters/Consent-Id"
+          }
+        ],
+        "description": "Reads details about a card account. It is assumed that a consent of the PSU to this access is already given and stored on the Salt Edge Compliance system. The addressed details of this account depends on the stored consent addressed by consentId.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "cardAccount": {
+                        "maskedPan": "525412******3241",
+                        "_links": {
+                          "transactions": {
+                            "href": "/demobank/api/berlingroup/v1/card-accounts/3d9a81b3-a47d-4130-8765-a9c0ff861b99/transactions"
+                          }
+                        },
+                        "currency": "EUR",
+                        "balances": [
+                          {
+                            "balanceType": "interimBooked",
+                            "balanceAmount": {
+                              "currency": "EUR",
+                              "amount": "14355.78"
+                            }
+                          },
+                          {
+                            "balanceType": "nonInvoiced",
+                            "balanceAmount": {
+                              "currency": "EUR",
+                              "amount": "4175.86"
+                            }
+                          }
+                        ],
+                        "product": "Basic Credit",
+                        "status": "enabled",
+                        "creditLimit": {
+                          "currency": "EUR",
+                          "amount": "15000"
+                        },
+                        "name": "Main",
+                        "resourceId": "3d9a81b3-a47d-4130-8765-a9c0ff861b99"
+                      }
+                    }
+                  },
+                  "properties": {
+                    "cardAccount": {
+                      "type": "object",
+                      "required": [
+                        "maskedPan",
+                        "currency",
+                        "creditLimit",
+                        "product",
+                        "status",
+                        "name",
+                        "resourceId",
+                        "_links"
+                      ],
+                      "properties": {
+                        "maskedPan": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "currency": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "creditLimit": {
+                          "type": "object",
+                          "required": [
+                            "currency",
+                            "amount"
+                          ],
+                          "properties": {
+                            "currency": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "amount": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        },
+                        "balances": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "minItems": 1,
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "balanceType": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "balanceAmount": {
+                                "type": "object",
+                                "required": [
+                                  "currency",
+                                  "amount"
+                                ],
+                                "properties": {
+                                  "currency": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "amount": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                }
+                              }
+                            },
+                            "required": [
+                              "balanceType",
+                              "balanceAmount"
+                            ]
+                          }
+                        },
+                        "product": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "status": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "name": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "resourceId": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "_links": {
+                          "type": "object",
+                          "properties": {
+                            "transactions": {
+                              "type": "object",
+                              "required": [
+                                "href"
+                              ],
+                              "properties": {
+                                "href": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "cardAccount"
+                  ]
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "cardAccount": {
+                        "maskedPan": "525412******3241",
+                        "_links": {
+                          "transactions": {
+                            "href": "/demobank/api/berlingroup/v1/card-accounts/3d9a81b3-a47d-4130-8765-a9c0ff861b99/transactions"
+                          }
+                        },
+                        "currency": "EUR",
+                        "balances": [
+                          {
+                            "balanceType": "interimBooked",
+                            "balanceAmount": {
+                              "currency": "EUR",
+                              "amount": "14355.78"
+                            }
+                          },
+                          {
+                            "balanceType": "nonInvoiced",
+                            "balanceAmount": {
+                              "currency": "EUR",
+                              "amount": "4175.86"
+                            }
+                          }
+                        ],
+                        "product": "Basic Credit",
+                        "status": "enabled",
+                        "creditLimit": {
+                          "currency": "EUR",
+                          "amount": "15000"
+                        },
+                        "name": "Main",
+                        "resourceId": "3d9a81b3-a47d-4130-8765-a9c0ff861b99"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        },
+        "security": []
+      }
+    },
+    "/{provider_code}/api/berlingroup/v1/card-accounts/{account_id}/transactions": {
+      "parameters": [
+        {
+          "name": "provider_code",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "The provider code"
+        },
+        {
+          "name": "account_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": " Account ID."
+        }
+      ],
+      "get": {
+        "summary": "Transactions",
+        "tags": [
+          "Card Accounts"
+        ],
+        "operationId": "get-card-account-transactions",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-Request-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Digest"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-Corporate-ID"
+          },
+          {
+            "$ref": "#/components/parameters/TPP-Signature-Certificate"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          },
+          {
+            "$ref": "#/components/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/components/parameters/Consent-Id"
+          },
+          {
+            "$ref": "#/components/parameters/dateFrom"
+          },
+          {
+            "$ref": "#/components/parameters/dateTo"
+          },
+          {
+            "$ref": "#/components/parameters/bookingStatus"
+          }
+        ],
+        "description": "Reads details about a card account. It is assumed that a consent of the PSU to this access is already given and stored on the Salt Edge Compliance system. The addressed details of this account depends on the stored consent addressed by consentId.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "balances": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "balanceType",
+                          "creditLimitIncluded",
+                          "lastChangeDateTime",
+                          "referenceDate",
+                          "lastCommittedTransaction"
+                        ],
+                        "properties": {
+                          "balanceAmount": {
+                            "type": "object",
+                            "properties": {
+                              "currency": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "amount": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "currency",
+                              "amount"
+                            ]
+                          },
+                          "balanceType": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "creditLimitIncluded": {
+                            "type": "boolean"
+                          },
+                          "lastChangeDateTime": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "referenceDate": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "lastCommittedTransaction": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "cardTransactions": {
+                      "type": "object",
+                      "properties": {
+                        "pending": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "minItems": 1,
+                          "items": {
+                            "required": [
+                              "cardTransactionId",
+                              "terminalId",
+                              "transactionDate",
+                              "markupFeePercentage",
+                              "cardAcceptorId",
+                              "merchantCategoryCode",
+                              "maskedPAN",
+                              "transactionDetails",
+                              "invoiced",
+                              "proprietaryBankTransactionCode"
+                            ],
+                            "properties": {
+                              "cardTransactionId": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "terminalId": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "transactionDate": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "transactionAmount": {
+                                "type": "object",
+                                "properties": {
+                                  "currency": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "amount": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "currency",
+                                  "amount"
+                                ]
+                              },
+                              "currencyExchange": {
+                                "type": "array",
+                                "uniqueItems": true,
+                                "minItems": 1,
+                                "items": {
+                                  "required": [
+                                    "sourceCurrency",
+                                    "exchangeRate",
+                                    "unitCurrency",
+                                    "targetCurrency",
+                                    "quotationDate",
+                                    "contractIdentification"
+                                  ],
+                                  "properties": {
+                                    "sourceCurrency": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "exchangeRate": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "unitCurrency": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "targetCurrency": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "quotationDate": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "contractIdentification": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    }
+                                  }
+                                }
+                              },
+                              "originalAmount": {
+                                "type": "object",
+                                "properties": {
+                                  "currency": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "amount": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "currency",
+                                  "amount"
+                                ]
+                              },
+                              "markupFee": {
+                                "type": "object",
+                                "properties": {
+                                  "currency": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "amount": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "currency",
+                                  "amount"
+                                ]
+                              },
+                              "markupFeePercentage": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "cardAcceptorId": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "cardAcceptorAddress": {
+                                "type": "object",
+                                "properties": {
+                                  "street": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "buildingnNumber": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "city": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "postalCode": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "country": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "street",
+                                  "buildingnNumber",
+                                  "city",
+                                  "postalCode",
+                                  "country"
+                                ]
+                              },
+                              "merchantCategoryCode": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "maskedPAN": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "transactionDetails": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "invoiced": {
+                                "type": "boolean"
+                              },
+                              "proprietaryBankTransactionCode": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "booked": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "minItems": 1,
+                          "items": {
+                            "required": [
+                              "cardTransactionId",
+                              "terminalId",
+                              "transactionDate",
+                              "bookingDate",
+                              "status",
+                              "markupFeePercentage",
+                              "cardAcceptorId",
+                              "merchantCategoryCode",
+                              "maskedPAN",
+                              "transactionDetails",
+                              "invoiced",
+                              "proprietaryBankTransactionCode"
+                            ],
+                            "properties": {
+                              "cardTransactionId": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "terminalId": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "transactionDate": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "bookingDate": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "status": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "transactionAmount": {
+                                "type": "object",
+                                "properties": {
+                                  "currency": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "amount": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "currency",
+                                  "amount"
+                                ]
+                              },
+                              "currencyExchange": {
+                                "type": "array",
+                                "uniqueItems": true,
+                                "minItems": 1,
+                                "items": {
+                                  "required": [
+                                    "sourceCurrency",
+                                    "exchangeRate",
+                                    "unitCurrency",
+                                    "targetCurrency",
+                                    "quotationDate",
+                                    "contractIdentification"
+                                  ],
+                                  "properties": {
+                                    "sourceCurrency": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "exchangeRate": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "unitCurrency": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "targetCurrency": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "quotationDate": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "contractIdentification": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    }
+                                  }
+                                }
+                              },
+                              "originalAmount": {
+                                "type": "object",
+                                "properties": {
+                                  "currency": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "amount": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "currency",
+                                  "amount"
+                                ]
+                              },
+                              "markupFee": {
+                                "type": "object",
+                                "properties": {
+                                  "currency": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "amount": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "currency",
+                                  "amount"
+                                ]
+                              },
+                              "markupFeePercentage": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "cardAcceptorId": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "cardAcceptorAddress": {
+                                "type": "object",
+                                "properties": {
+                                  "street": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "buildingnNumber": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "city": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "postalCode": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "country": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "street",
+                                  "buildingnNumber",
+                                  "city",
+                                  "postalCode",
+                                  "country"
+                                ]
+                              },
+                              "merchantCategoryCode": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "maskedPAN": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "transactionDetails": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "invoiced": {
+                                "type": "boolean"
+                              },
+                              "proprietaryBankTransactionCode": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "_links": {
+                          "type": "object",
+                          "properties": {
+                            "cardAccount": {
+                              "type": "object",
+                              "properties": {
+                                "href": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "href"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "cardAccount"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "pending",
+                        "booked",
+                        "_links"
+                      ]
+                    },
+                    "cardAccount": {
+                      "type": "object",
+                      "properties": {
+                        "maskedPan": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "maskedPan"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "balances",
+                    "cardTransactions",
+                    "cardAccount"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "balances": [
+                        {
+                          "balanceAmount": {
+                            "currency": "EUR",
+                            "amount": "123"
+                          },
+                          "balanceType": "closingBooked",
+                          "creditLimitIncluded": false,
+                          "lastChangeDateTime": "2020-02-12T09:45:10.068Z",
+                          "referenceDate": "2020-02-12",
+                          "lastCommittedTransaction": "string"
+                        }
+                      ],
+                      "cardTransactions": {
+                        "pending": [
+                          {
+                            "cardTransactionId": "938",
+                            "terminalId": "string",
+                            "transactionDate": "2020-02-12",
+                            "transactionAmount": {
+                              "currency": "EUR",
+                              "amount": "123"
+                            },
+                            "currencyExchange": [
+                              {
+                                "sourceCurrency": "EUR",
+                                "exchangeRate": "string",
+                                "unitCurrency": "string",
+                                "targetCurrency": "EUR",
+                                "quotationDate": "2020-02-12",
+                                "contractIdentification": "string"
+                              }
+                            ],
+                            "originalAmount": {
+                              "currency": "EUR",
+                              "amount": "123"
+                            },
+                            "markupFee": {
+                              "currency": "EUR",
+                              "amount": "123"
+                            },
+                            "markupFeePercentage": "0.3",
+                            "cardAcceptorId": "string",
+                            "cardAcceptorAddress": {
+                              "street": "rue blue",
+                              "buildingnNumber": "89",
+                              "city": "Paris",
+                              "postalCode": "75000",
+                              "country": "FR"
+                            },
+                            "merchantCategoryCode": "string",
+                            "maskedPAN": "123456xxxxxx1234",
+                            "transactionDetails": "string",
+                            "invoiced": true,
+                            "proprietaryBankTransactionCode": "string"
+                          }
+                        ],
+                        "booked": [
+                          {
+                            "cardTransactionId": "string",
+                            "terminalId": "string",
+                            "transactionDate": "2020-02-12",
+                            "bookingDate": "2020-02-12",
+                            "status": "booked",
+                            "transactionAmount": {
+                              "currency": "EUR",
+                              "amount": "123"
+                            },
+                            "currencyExchange": [
+                              {
+                                "sourceCurrency": "EUR",
+                                "exchangeRate": "string",
+                                "unitCurrency": "string",
+                                "targetCurrency": "EUR",
+                                "quotationDate": "2020-02-12",
+                                "contractIdentification": "string"
+                              }
+                            ],
+                            "originalAmount": {
+                              "currency": "EUR",
+                              "amount": "123"
+                            },
+                            "markupFee": {
+                              "currency": "EUR",
+                              "amount": "123"
+                            },
+                            "markupFeePercentage": "0.3",
+                            "cardAcceptorId": "string",
+                            "cardAcceptorAddress": {
+                              "street": "rue blue",
+                              "buildingnNumber": "89",
+                              "city": "Paris",
+                              "postalCode": "75000",
+                              "country": "FR"
+                            },
+                            "merchantCategoryCode": "string",
+                            "maskedPAN": "123456xxxxxx1234",
+                            "transactionDetails": "string",
+                            "invoiced": true,
+                            "proprietaryBankTransactionCode": "string"
+                          }
+                        ],
+                        "_links": {
+                          "cardAccount": {
+                            "href": "/demobank/api/berlingroup/v1/card-accounts/938"
+                          }
+                        }
+                      },
+                      "cardAccount": {
+                        "maskedPan": "525412******3241"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "balances": [
+                        {
+                          "balanceAmount": {
+                            "currency": "EUR",
+                            "amount": "123"
+                          },
+                          "balanceType": "closingBooked",
+                          "creditLimitIncluded": false,
+                          "lastChangeDateTime": "2020-02-12T09:45:10.068Z",
+                          "referenceDate": "2020-02-12",
+                          "lastCommittedTransaction": "string"
+                        }
+                      ],
+                      "cardTransactions": {
+                        "pending": [
+                          {
+                            "cardTransactionId": "938",
+                            "terminalId": "string",
+                            "transactionDate": "2020-02-12",
+                            "transactionAmount": {
+                              "currency": "EUR",
+                              "amount": "123"
+                            },
+                            "currencyExchange": [
+                              {
+                                "sourceCurrency": "EUR",
+                                "exchangeRate": "string",
+                                "unitCurrency": "string",
+                                "targetCurrency": "EUR",
+                                "quotationDate": "2020-02-12",
+                                "contractIdentification": "string"
+                              }
+                            ],
+                            "originalAmount": {
+                              "currency": "EUR",
+                              "amount": "123"
+                            },
+                            "markupFee": {
+                              "currency": "EUR",
+                              "amount": "123"
+                            },
+                            "markupFeePercentage": "0.3",
+                            "cardAcceptorId": "string",
+                            "cardAcceptorAddress": {
+                              "street": "rue blue",
+                              "buildingnNumber": "89",
+                              "city": "Paris",
+                              "postalCode": "75000",
+                              "country": "FR"
+                            },
+                            "merchantCategoryCode": "string",
+                            "maskedPAN": "123456xxxxxx1234",
+                            "transactionDetails": "string",
+                            "invoiced": true,
+                            "proprietaryBankTransactionCode": "string"
+                          }
+                        ],
+                        "booked": [
+                          {
+                            "cardTransactionId": "string",
+                            "terminalId": "string",
+                            "transactionDate": "2020-02-12",
+                            "bookingDate": "2020-02-12",
+                            "status": "booked",
+                            "transactionAmount": {
+                              "currency": "EUR",
+                              "amount": "123"
+                            },
+                            "currencyExchange": [
+                              {
+                                "sourceCurrency": "EUR",
+                                "exchangeRate": "string",
+                                "unitCurrency": "string",
+                                "targetCurrency": "EUR",
+                                "quotationDate": "2020-02-12",
+                                "contractIdentification": "string"
+                              }
+                            ],
+                            "originalAmount": {
+                              "currency": "EUR",
+                              "amount": "123"
+                            },
+                            "markupFee": {
+                              "currency": "EUR",
+                              "amount": "123"
+                            },
+                            "markupFeePercentage": "0.3",
+                            "cardAcceptorId": "string",
+                            "cardAcceptorAddress": {
+                              "street": "rue blue",
+                              "buildingnNumber": "89",
+                              "city": "Paris",
+                              "postalCode": "75000",
+                              "country": "FR"
+                            },
+                            "merchantCategoryCode": "string",
+                            "maskedPAN": "123456xxxxxx1234",
+                            "transactionDetails": "string",
+                            "invoiced": true,
+                            "proprietaryBankTransactionCode": "string"
+                          }
+                        ],
+                        "_links": {
+                          "cardAccount": {
+                            "href": "/demobank/api/berlingroup/v1/card-accounts/938"
+                          }
+                        }
+                      },
+                      "cardAccount": {
+                        "maskedPan": "525412******3241"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        },
+        "security": []
+      }
+    },
+    "/{provider_code}/api/berlingroup/v1/card-accounts/{account_id}/balances": {
+      "parameters": [
+        {
+          "name": "provider_code",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "The provider code"
+        },
+        {
+          "name": "account_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": " Account ID."
+        }
+      ],
+      "get": {
+        "summary": "Balances",
+        "tags": [
+          "Card Accounts"
+        ],
+        "operationId": "get-card-account-balances",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-Request-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Digest"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Psu-Corporate-ID"
+          },
+          {
+            "$ref": "#/components/parameters/TPP-Signature-Certificate"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          },
+          {
+            "$ref": "#/components/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/components/parameters/Consent-Id"
+          }
+        ],
+        "description": "Reads details about a card account. It is assumed that a consent of the PSU to this access is already given and stored on the Salt Edge Compliance system. The addressed details of this account depends on the stored consent addressed by consentId.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "balances": [
+                        {
+                          "balanceType": "interimBooked",
+                          "balanceAmount": {
+                            "currency": "EUR",
+                            "amount": "14355.78"
+                          }
+                        },
+                        {
+                          "balanceType": "nonInvoiced",
+                          "balanceAmount": {
+                            "currency": "EUR",
+                            "amount": "4175.86"
+                          }
+                        }
+                      ],
+                      "cardAccount": {
+                        "maskedPan": "525412******3241"
+                      }
+                    }
+                  },
+                  "properties": {
+                    "balances": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "balanceType": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "balanceAmount": {
+                            "type": "object",
+                            "required": [
+                              "currency",
+                              "amount"
+                            ],
+                            "properties": {
+                              "currency": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "amount": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "balanceType",
+                          "balanceAmount"
+                        ]
+                      }
+                    },
+                    "cardAccount": {
+                      "type": "object",
+                      "required": [
+                        "maskedPan"
+                      ],
+                      "properties": {
+                        "maskedPan": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "balances",
+                    "cardAccount"
+                  ]
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "balances": [
+                        {
+                          "balanceType": "interimBooked",
+                          "balanceAmount": {
+                            "currency": "EUR",
+                            "amount": "14355.78"
+                          }
+                        },
+                        {
+                          "balanceType": "nonInvoiced",
+                          "balanceAmount": {
+                            "currency": "EUR",
+                            "amount": "4175.86"
+                          }
+                        }
+                      ],
+                      "cardAccount": {
+                        "maskedPan": "525412******3241"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {},
+    "parameters": {
+      "provider_code": {
+        "name": "provider_code",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "The provider code"
+      },
+      "X-Request-ID": {
+        "name": "X-Request-ID",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid",
+          "example": "cc5a8022-5e71-460e-82fa-ab0be1997a54"
+        },
+        "description": "ID of the request, unique to the call, as determined by the initiating party."
+      },
+      "Digest": {
+        "name": "Digest",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Contains a Hash of the message body, if the message does not contain a body,<br>the \"Digest\" header must contain the hash of an empty string - \"\"."
+      },
+      "Date": {
+        "name": "Date",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "description": "Endpoint request execution date."
+      },
+      "Psu-ID": {
+        "name": "Psu-ID",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Client ID of the PSU in the ASPSP client interface."
+      },
+      "Psu-Corporate-ID": {
+        "name": "Psu-Corporate-ID",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Only used in a corporate context."
+      },
+      "TPP-Signature-Certificate": {
+        "name": "TPP-Signature-Certificate",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVBakNDQXVvQ0FRQXdEUVlKS29aSWh2Y05BUUVMQlFBd1d6RVhNQlVHQTFVRVlRd09WSEJ3VTJGc2RGUmwKYzNRd01EQXhJREFlQmdOVkJBTU1GMk5sY25SVFNVZE9VMEZNVkZSRlUxUWdWMlZpSUVOQk1SRXdEd1lEVlFRSwpEQWhUWVd4MFZHVnpkREVMTUFrR0ExVUVCaE1DVWs4d0hoY05NVGt4TWpFNE1URXlOVFU1V2hjTk1qRXhNakUzCk1URXlOVFU1V2pDQmpURVdNQlFHQTFVRUF3d05jMkZzZEMxMFpYTjBMbU52YlRFUk1BOEdBMVVFQ2d3SVUyRnMKZEZSbGMzUXhDekFKQmdOVkJBWVRBbEpQTVJJd0VBWURWUVFJREFsQ2RXTjFjbVZ6ZEdreEVqQVFCZ05WQkFjTQpDVUoxWTNWeVpYTjBhVEVXTUJRR0ExVUVDUXdOUVd4aVlTQkpkV3hwWVNBM05URVRNQkVHQTFVRVlRd0thV1JsCmJuUnBabWxsY2pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBS2dXNEo5K0hGY0wKUVVwTEk0c1pCSm5RaGdRYUpYRGxwVDI4NWxlOGVEcTdUalpnYXpLcU05RkJydzRBRURxUmxYR3Znd2luSkY2Mgowd3VJcSs3cGpPWFBQdytZOVhRQnBTa2p1cmJ5aEpPZjhiNlVqTFBMQnVBd09rRk52N0prbHdLeXFmazRHRzROCmdrOGRVYTFjS05MY1gzNzdwdno0Q0hZalBraGlLY0xqQVJ4TFRJYkdtejlZQVQvQWszbDdCRkRkV2owQnJrR2oKV2RGelJWV3FjdHA0NjVvWEZXZTZ3QmlybEplK1JEZ2hnQWRUQWlQR1J3WHV4dmRiSW5SOHZ2b0RJNTJHRXVzaApGWUNZd28zdWFVSVR5Z3hOZEJyWjVOaVpLaCtybjVVNW4zM0pETm9OV2hCVUUwMUwvaFYzUHlleHBKVHltaURQCjZTUFJKM0ZMR3RrQ0F3RUFBYU9Cb2pDQm56QU1CZ05WSFJNRUJUQURBUUgvTUE0R0ExVWREd0VCL3dRRUF3SUIKQmpBZEJnTlZIUTRFRmdRVUtwUGZ5MTlSQUJQS3J2YnNNUnRXM3lHSU1mb3dId1lEVlIwakJCZ3dGb0FVS3BQZgp5MTlSQUJQS3J2YnNNUnRXM3lHSU1mb3dQd1lJS3dZQkJRVUhBUU1FTXd3eGRHVnpkRkJUVUY5QlNTNHVMbUZsCk9EVTBNalE1TFdaaVpEQXROREV4WmkxaU0ySXdMV0poWkRFNE5Ea3hNelptWmpBTkJna3Foa2lHOXcwQkFRc0YKQUFPQ0FRRUFacHEvdmF5T3ZSS3dKd1dPQnpTMzhoUHA4TjVnRTlqd2J6dkxCTUhvZERXZk11ZTA5SzFweUI3KwpQdU1rZjNOT0tVSERMWDhob0xiZ0dWVlY0S1lqRndGa203cWY0OTZNTWE0VnZBRWNPeUJkM0pGVWcyeGIxVlN4Cjk0OWVCaVdGcGtaSVNZZUNxNXJ4UWFNeHJJVm9OZjhaSjVOT2V3aU1DM0ZYM3duVGw2VG9yUW1lQUU5MnhuMEQKdnZ6ZUJ4YlFqdTdjQlh3SDFPaGdUamx0YTM1WE1ESjhXbGo4TWZRR0YvZThIZFIrS014WWU5SWNROHN1UjdBVQpGRGkyaUJsMlVQc3dCa0FqMHJRVlY2U2psNWdVSm95K0FJaGZBYXE2cUxSQnJ1NGJTbE44TnVpY2RTRkZ3eHZ1ClEwOVl1U3U3djQ2a1R3ZUxpNnZJZGQxaUxUc05Ndz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+        },
+        "description": "The certificate used for signing the request, in base64 encoding that should comply with RFC 4648<br>(No line feeds)."
+      },
+      "Signature": {
+        "name": "Signature",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "Signature keyId=\\\"SN=0,DN=/organizationIdentifier=TppSaltTest000/CN=certSIGNSALTTEST Web CA/O=SaltTest/C=RO\\\",algorithm=\\\"rsa-sha256\\\",headers=\\\"digest date x-request-id\\\",signature=\\\"Fys106OY/uMk1Tnh4MEvHsUKdJIOX9fw+am3NrqrxFOLIl1BGlcu1+UJhDBHlc3/rkRn0++5AAbkXzqUL8kqm1RVILoRzSg+tr75PUTM5RlIgCli8QtHZrpZtfzb7tEoHqa8zo1SmiopI/bQchQrjdhWu9xIC0TUuMfiD8f6TdH2QpbkXi25uXTQl8wB4qt2dAb4k76lkDM4x29JVmoZkWq28R/kVkPWGJrU7mS2viUUhgofdNzL2vaSd2g7FPrr/E03U/KYU0k047ucCbv1Z4ozdaSJljuyzj0Iq4O04Ztj6oaV8yhnr3LY8aKj1JO9tRy1gpSidxCAqDz90iE9LQ==\\\"",
+          "pattern": "/Signature keyId=\\\"SN=(?<serial>.+),DN=(?<dn>.+)\\\",algorithm=\\\"(?<algorithm>.+)\\\",headers=\\\"(?<headers>.+)\\\",signature=\\\"(?<signature>.+)\\\"/"
+        },
+        "description": "A signature of the request by the TPP on application level. This might be mandated by ASPSP."
+      },
+      "Content-Type": {
+        "name": "Content-Type",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "application/json"
+        },
+        "description": "The media type of the body of the request."
+      },
+      "Consent-Id": {
+        "name": "Consent-Id",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "description": "ID of the corresponding consent object as returned by an Account Information Consent Request.",
+        "required": true
+      },
+      "TPP-Redirect-URI": {
+        "name": "TPP-Redirect-URI",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "https://redirect-my-psu-here.please"
+        },
+        "description": "URI of the TPP, where the transaction flow shall be redirected to after a Redirect. Mandated for the Redirect SCA Approach, specifically when TPP-Redirect-Preferred equals \"true\". It is recommended to always use this header field."
+      },
+      "TPP-Redirect-Preferred": {
+        "name": "TPP-Redirect-Preferred",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "boolean",
+          "enum": [
+            true,
+            false
+          ]
+        },
+        "description": "If it equals \"true\", the TPP prefers a redirect over an embedded SCA approach. If it equals \"false\", the TPP prefers not to be redirected for SCA. The ASPSP will then choose between the Embedded or the Decoupled SCA approach, depending on the choice of the SCA procedure by the TPP/PSU. If the parameter is not used, the ASPSP will choose the SCA approach to be applied depending on the SCA method chosen by the TPP/PSU."
+      },
+      "account_id": {
+        "name": "account_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": " Account ID."
+      },
+      "dateFrom": {
+        "name": "dateFrom",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "default": "90 days ago.",
+          "example": "2019-01-06"
+        },
+        "description": "Starting date (inclusive the date dateFrom) of the transaction list, mandated if no delta access is required."
+      },
+      "dateTo": {
+        "name": "dateTo",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "default": "Date Today.",
+          "type": "string",
+          "example": "2019-03-06"
+        },
+        "description": "End date (inclusive the data dateTo) of the transaction list, default is \"now\" if not given."
+      },
+      "bookingStatus": {
+        "name": "bookingStatus",
+        "in": "query",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "booked",
+            "pending"
+          ]
+        },
+        "description": " Permitted codes are booked, pending and both. booked shall be supported by the ASPSP."
+      }
+    },
+    "examples": {},
+    "responses": {
+      "400": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "tppMessages": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "minItems": 1,
+                  "items": {
+                    "required": [
+                      "category",
+                      "code",
+                      "text"
+                    ],
+                    "properties": {
+                      "category": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "code": {
+                        "type": "number"
+                      },
+                      "text": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "tppMessages"
+              ],
+              "x-examples": {
+                "example-1": {
+                  "tppMessages": [
+                    {
+                      "category": "SignatureMalformed",
+                      "code": 401,
+                      "text": "Given signature is malformed."
+                    }
+                  ]
+                }
+              }
+            },
+            "examples": {
+              "FormatError": {
+                "value": {
+                  "tppMessages": [
+                    {
+                      "category": "FormatError",
+                      "code": 400,
+                      "text": "Invalid input. More info in error_message"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "tppMessages": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "minItems": 1,
+                  "items": {
+                    "required": [
+                      "category",
+                      "code",
+                      "text"
+                    ],
+                    "properties": {
+                      "category": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "code": {
+                        "type": "number"
+                      },
+                      "text": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "tppMessages"
+              ],
+              "x-examples": {
+                "example-1": {
+                  "tppMessages": [
+                    {
+                      "category": "CertificateInvalid",
+                      "code": 401,
+                      "text": "Given certificate is invalid."
+                    }
+                  ]
+                }
+              }
+            },
+            "examples": {
+              "CertificateInvalid": {
+                "value": {
+                  "tppMessages": [
+                    {
+                      "category": "CertificateInvalid",
+                      "code": 401,
+                      "text": "Given certificate is invalid."
+                    }
+                  ]
+                }
+              },
+              "CertificateMissing": {
+                "value": {
+                  "tppMessages": [
+                    {
+                      "category": "CertificateMissing",
+                      "code": 401,
+                      "text": "This request cannot be performed without Certificate header."
+                    }
+                  ]
+                }
+              },
+              "ConsentExpired": {
+                "value": {
+                  "tppMessages": [
+                    {
+                      "category": "ConsentExpired",
+                      "code": 401,
+                      "text": "The consent was created by this TPP but has expired and needs to be renewed."
+                    }
+                  ]
+                }
+              },
+              "ConsentInvalid": {
+                "value": {
+                  "tppMessages": [
+                    {
+                      "category": "ConsentInvalid",
+                      "code": 401,
+                      "text": "The consent was created by this TPP but has expired and needs to be renewed."
+                    }
+                  ]
+                }
+              },
+              "ConsentUnknown": {
+                "value": {
+                  "tppMessages": [
+                    {
+                      "category": "ConsentUnknown",
+                      "code": 401,
+                      "text": "The Consent-ID cannot be matched by the ASPSP relative to the TPP."
+                    }
+                  ]
+                }
+              },
+              "SignatureInvalid": {
+                "value": {
+                  "tppMessages": [
+                    {
+                      "category": "SignatureInvalid",
+                      "code": 401,
+                      "text": "Given signature is invalid."
+                    }
+                  ]
+                }
+              },
+              "SignatureMalformed": {
+                "value": {
+                  "tppMessages": [
+                    {
+                      "category": "SignatureMalformed",
+                      "code": 401,
+                      "text": "Given signature is malformed."
+                    }
+                  ]
+                }
+              },
+              "SignatureMissing": {
+                "value": {
+                  "tppMessages": [
+                    {
+                      "category": "SignatureMissing",
+                      "code": 401,
+                      "text": "This request cannot be performed without Signature header."
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "tppMessages": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "minItems": 1,
+                  "items": {
+                    "required": [
+                      "category",
+                      "code",
+                      "text"
+                    ],
+                    "properties": {
+                      "category": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "code": {
+                        "type": "number"
+                      },
+                      "text": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "tppMessages"
+              ],
+              "x-examples": {
+                "example-1": {
+                  "tppMessages": [
+                    {
+                      "category": "SignatureInvalid",
+                      "code": 401,
+                      "text": "Given signature is invalid."
+                    }
+                  ]
+                }
+              }
+            },
+            "examples": {
+              "AccessDenied": {
+                "value": {
+                  "tppMessages": [
+                    {
+                      "category": "AccessDenied",
+                      "code": 401,
+                      "text": "Action you want to perform is not allowed. More in error_message"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "ResourceUnknown": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "tppMessages": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "minItems": 1,
+                  "items": {
+                    "required": [
+                      "category",
+                      "code",
+                      "text"
+                    ],
+                    "properties": {
+                      "category": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "code": {
+                        "type": "number"
+                      },
+                      "text": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "tppMessages"
+              ],
+              "x-examples": {
+                "example-1": {
+                  "tppMessages": [
+                    {
+                      "category": "ResourceUnknown",
+                      "code": 404,
+                      "text": "The addressed resource is unknown relative to the TPP."
+                    }
+                  ]
+                }
+              }
+            },
+            "examples": {
+              "ResourceUnknown": {
+                "value": {
+                  "tppMessages": [
+                    {
+                      "category": "ResourceUnknown",
+                      "code": 404,
+                      "text": "The addressed resource is unknown relative to the TPP."
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Accounts"
+    },
+    {
+      "name": "Card Accounts"
+    }
+  ]
+}
